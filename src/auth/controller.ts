@@ -4,6 +4,7 @@ import { randomBytes, createHmac } from 'node:crypto'
 import { db } from '../db';
 import { usersTable } from '../db/schema';
 import { eq } from 'drizzle-orm';
+import { createUSerToken } from './utils/token';
 
 class AuthenticationController {
     public async handleSignup(req: Request, res: Response) {
@@ -56,8 +57,9 @@ class AuthenticationController {
             return res.status(400).json({ message: `email or password is incorrect` })
 
         // TOKEN banao
+        const token = createUSerToken({id: user.id})
 
-        return res.json({ message: `SignIn Success`, data: { token: 1 } })
+        return res.json({ message: `SignIn Success`, data: { token: token } })
     }
 }
 
