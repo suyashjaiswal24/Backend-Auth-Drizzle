@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { signinPayloadModel, signupPayloadModel } from './models';
 import { randomBytes, createHmac } from 'node:crypto'
 import { db } from '../db';
